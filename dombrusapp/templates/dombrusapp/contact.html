@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Контакты{% endblock %}
+
+{% block content %}
+
+    <div class="page-header" style="margin-top: 16px;">
+        <h1 class="page-title">Контакты</h1>
+    </div>
+
+    {% if contacts %}
+        <div class="container">
+            {% for contact in contacts %}
+                <div style="text-align: center;">
+                    <h4>
+                        <strong>{{ contact.title }}:</strong> {{ contact.value | safe }}
+                    </h4>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+{% endblock %}

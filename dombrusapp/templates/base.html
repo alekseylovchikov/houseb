@@ -1,0 +1,108 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>{% block title %}{% endblock %}</title>
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/all.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/lightbox.min.css' %}">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'img/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'img/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'img/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'img/site.webmanifest' %}">
+    <link rel="mask-icon" href="{% static 'img/safari-pinned-tab.svg' %}" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="{% url 'home' %}">БоровичиДома</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li
+              {% if '/' == request.path %}
+                class="nav-item active"
+              {% else %}
+                class="nav-item"
+              {% endif %}
+          >
+            <a class="nav-link" href="{% url 'home' %}">Главная</a>
+          </li>
+          <li
+              {% if '/brusovye' == request.path %}
+                class="nav-item active"
+              {% else %}
+                class="nav-item"
+              {% endif %}
+          >
+            <a class="nav-link" href="{% url 'brus' %}">Брусовые</a>
+          </li>
+          <li
+              {% if '/karkasnye' == request.path %}
+                class="nav-item active"
+              {% else %}
+                class="nav-item"
+              {% endif %}
+          >
+            <a class="nav-link" href="{% url 'karkas' %}">Каркасные</a>
+          </li>
+          <li
+              {% if '/bani' == request.path %}
+                class="nav-item active"
+              {% else %}
+                class="nav-item"
+              {% endif %}
+          >
+            <a class="nav-link" href="{% url 'bani' %}">Бани</a>
+          </li>
+          <li
+              {% if '/contacts' == request.path %}
+                class="nav-item active"
+              {% else %}
+                class="nav-item"
+              {% endif %}
+          >
+            <a class="nav-link" href="{% url 'contacts' %}">Контакты</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="jumbotron">
+        <div class="jumbotron-title">
+            БоровичиДома
+        </div>
+    </div>
+
+    {% block content %}{% endblock %}
+
+    <footer class="footer">
+        <p class="lead">Тел.: <a href="tel:+79210005555">+7 921 000-55-55</a></p>
+        <p class="lead">Почта: <a href="mailto:test@gmail.com">example@gmail.com</a></p>
+        <p class="lead">Все права защищены &copy;</p>
+        <p>БоровичиДома <span id="footer-year"></span></p>
+    </footer>
+
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/lightbox.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script>
+        document.getElementById('footer-year').innerText = new Date().getFullYear().toString();
+    </script>
+    <script id="dsq-count-scr" src="//domborovichi.disqus.com/count.js" async></script>
+</body>
+</html>

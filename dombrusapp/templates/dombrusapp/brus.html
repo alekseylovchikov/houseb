@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+{% load humanize %}
+
+{% block title %}
+    Брусовые
+{% endblock %}
+
+{% block content %}
+
+    <div class="page-header" style="margin-top: 16px;">
+        <h1 class="page-title">Брусовые</h1>
+    </div>
+
+    {#  поиск  #}
+{#    <div class="container" style="margin-bottom: 16px;">#}
+{#        <form action="{% url 'search' %}" class="search-form">#}
+{#            <input value="{{ values.keywords }}" name="keywords" class="form-control" style="margin-bottom: 16px;" type="text" placeholder="Поиск в описании" />#}
+{#            <input value="{{ values.price }}" name="price" class="form-control" style="margin-bottom: 16px;" type="text" placeholder="Поиск по цене" />#}
+{#            <button type="submit" class="btn btn-primary">#}
+{#                Искать во всех проектах#}
+{#            </button>#}
+{#        </form>#}
+{#    </div>#}
+
+    {#  список  #}
+    <div class="container">
+        <div class="grid">
+            {% if projects %}
+                {% for listing in projects %}
+                    <div class="project">
+                        <div class="project-title">
+                            <h3>{{ listing.title }}</h3>
+                        </div>
+                        {% if listing.photo_1 %}
+                            <div>
+                                <img class="project-image" src="{{ listing.photo_1.url }}" alt="{{ listing.title }}">
+                            </div>
+                        {% endif %}
+                        <div class="project-content">
+                            <div>
+                                <h5>Размер: {{ listing.size }}</h5>
+                            </div>
+                            <div>
+                                <h5>Описание:</h5>
+                                <p class="lead">
+                                    {{ listing.description }}
+                                </p>
+                            </div>
+                            <div>
+                                <h5 class="project-price">
+                                    Цена: {{ listing.price | intcomma }} руб.
+                                </h5>
+                            </div>
+                            <div class="project-button">
+                                <a href="{% url 'project' listing.id %}" class="btn btn-primary btn-block">
+                                    Подробнее
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="col-md-12">
+                    <p>Нет проектов</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    {# пагинация #}
+    <div class="container" style="padding-top: 16px;">
+        <div class="row">
+            <div class="col-md-12">
+                {% if projects.has_other_pages %}
+                    <ul class="pagination">
+                        {% if projects.has_previous %}
+                            <li class="page-item">
+                                <a href="?page={{ projects.previous_page_number }}" class="page-link">
+                                    &laquo;
+                                </a>
+                            </li>
+                        {% else %}
+                            <li class="page-item disabled">
+                                <span class="page-link">
+                                    &laquo;
+                                </span>
+                            </li>
+                        {% endif %}
+                        {% for i in projects.paginator.page_range %}
+                            {% if projects.number == i %}
+                                <li class="page-item active">
+                                    <span class="page-link">{{ i }}</span>
+                                </li>
+                            {% else %}
+                                <li class="page-item">
+                                    <a href="?page={{ i }}" class="page-link">
+                                        {{ i }}
+                                    </a>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                        {% if projects.has_next %}
+                            <li class="page-item">
+                                <a href="?page={{ projects.next_page_number }}" class="page-link">
+                                    &raquo;
+                                </a>
+                            </li>
+                        {% else %}
+                            <li class="page-item disabled">
+                                <span class="page-link">
+                                    &raquo;
+                                </span>
+                            </li>
+                        {% endif %}
+                    </ul>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

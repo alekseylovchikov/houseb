@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+{% load humanize %}
+
+{% block title %}{{ project.title }}{% endblock %}
+
+{% block content %}
+
+    {#  заголовок  #}
+    <div class="page-header" style="margin-top: 16px;">
+        <h1 class="page-title">{{ project.title }}</h1>
+    </div>
+
+    {#  контент  #}
+    <div class="container">
+        <img style="width: 100%;" src="{{ project.photo_1.url }}" alt="{{ project.title }}" />
+            <!-- Thumbnails -->
+              <div class="row mb-2 mt-2 thumbs">
+                {% if project.photo_1 %}
+                    <div class="col-md-2">
+                        <a href="{{ project.photo_1.url }}" data-lightbox="home-images">
+                            <img src="{{ project.photo_1.url }}" alt="" class="img-fluid">
+                        </a>
+                    </div>
+                {% endif %}
+                {% if project.photo_2 %}
+                    <div class="col-md-2">
+                        <a href="{{ project.photo_2.url }}" data-lightbox="home-images">
+                            <img src="{{ project.photo_2.url }}" alt="" class="img-fluid">
+                        </a>
+                    </div>
+                {% endif %}
+                {% if project.photo_3 %}
+                    <div class="col-md-2">
+                      <a href="{{ project.photo_3.url }}" data-lightbox="home-images">
+                        <img src="{{ project.photo_3.url }}" alt="" class="img-fluid">
+                      </a>
+                    </div>
+                {% endif %}
+                {% if project.photo_4 %}
+                    <div class="col-md-2">
+                      <a href="{{ project.photo_4.url }}" data-lightbox="home-images">
+                        <img src="{{ project.photo_4.url }}" alt="" class="img-fluid">
+                      </a>
+                    </div>
+                {% endif %}
+                {% if project.photo_5 %}
+                    <div class="col-md-2">
+                      <a href="{{ project.photo_5.url }}" data-lightbox="home-images">
+                        <img src="{{ project.photo_5.url }}" alt="" class="img-fluid">
+                      </a>
+                    </div>
+                  {% endif %}
+                {% if project.photo_6 %}
+                    <div class="col-md-2">
+                      <a href="{{ project.photo_6.url }}" data-lightbox="home-images">
+                        <img src="{{ project.photo_6.url }}" alt="" class="img-fluid">
+                      </a>
+                    </div>
+                {% endif %}
+              </div>
+        <div style="margin: 16px 0;">
+            <h4>Описание:</h4>
+            <p class="lead">
+                {{ project.description }}
+            </p>
+        </div>
+        <hr>
+        <div style="margin: 16px 0;">
+            <h4>Размер: {{ project.size }}</h4>
+        </div>
+        <hr>
+        <div style="margin: 16px 0;">
+            <h4>
+                Тип:
+                {% if project.type == "Ka" %}
+                    <span> Каркасные</span>
+                {% elif project.type == "Br" %}
+                    <span> Брусовые</span>
+                {% elif project.type == "Ba" %}
+                    <span> Бани</span>
+                {% endif %}
+            </h4>
+        </div>
+        <hr>
+        <div style="margin: 16px 0;">
+            <h5 class="project-price">
+                Цена: {{ project.price | intcomma }} руб.
+            </h5>
+        </div>
+        <hr>
+    </div>
+    {#  контент  #}
+
+    <div class="container">
+        <div id="disqus_thread"></div>
+    </div>
+    <script>
+
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+    /*
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        s.src = 'https://domborovichi.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+    </script>
+    <noscript>Если вы это видите, вам необходимо включить JavaScript в вашем браузере, чтобы видеть и писать комментарии</noscript>
+
+{% endblock %}

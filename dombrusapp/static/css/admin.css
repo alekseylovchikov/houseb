@@ -1,0 +1,20 @@
+#header {
+    height: 50px;
+    background: #3c7ee0;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#branding h1 {
+    color: #fff;
+}
+
+a:link, a:visited {
+    color: #3c7ee0;
+}
+
+div.breadcrumbs {
+    background: #45689e;
+}

@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+{% load humanize %}
+
+{% block title %}Результат поиска{% endblock %}
+
+{% block content %}
+
+    <div class="page-header" style="margin-top: 16px;">
+        <h1 class="page-title">Результат поиска</h1>
+    </div>
+
+    {#  поиск  #}
+    <div class="container" style="margin-bottom: 16px;">
+        <form action="{% url 'search' %}" class="search-form">
+            <div class="search-grid">
+                <input value="{{ values.keywords }}" name="keywords" class="form-control" style="margin-bottom: 16px;" type="text" placeholder="Поиск в описании" />
+{#                <input value="{{ values.price }}" name="price" class="form-control" style="margin-bottom: 16px;" type="text" placeholder="Поиск по цене" />#}
+                <input value="{{ values.size }}" name="size" class="form-control" style="margin-bottom: 16px;" type="text" placeholder="Поиск по размеру" />
+
+                <div>
+                    <select name="price" class="form-control">
+                      <option selected disabled="disabled">Все цены</option>
+                      {% for key, value in price_choices.items %}
+                          <option
+                              value="{{ key }}"
+                              {% if key == values.price %}
+                                  selected
+                              {% endif %}
+                          >
+                              {{ value }}
+                          </option>
+                      {% endfor %}
+                    </select>
+                </div>
+                <div>
+                    <select name="type" class="form-control">
+                      <option selected disabled="disabled">Все типы</option>
+                      {% for key, value in types.items %}
+                          <option
+                              value="{{ key }}"
+                              {% if key == values.type %}
+                                  selected
+                              {% endif %}
+                          >
+                              {{ value }}
+                          </option>
+                      {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div style="margin-top: 16px; display: flex; justify-content: center;">
+                <button
+                    type="submit"
+                    class="btn btn-primary"
+                >
+                    Найти
+                </button>
+            </div>
+        </form>
+    </div>
+
+    {#  список  #}
+    <div class="container">
+        <div class="grid">
+            {% if projects %}
+                {% for listing in projects %}
+                    <div class="project">
+                        <div class="project-title">
+                            <h3>{{ listing.title }}</h3>
+                        </div>
+                        {% if listing.photo_1 %}
+                            <div>
+                                <img class="project-image" src="{{ listing.photo_1.url }}" alt="{{ listing.title }}">
+                            </div>
+                        {% endif %}
+                        <div class="project-content">
+                            <div>
+                                <h5>Размер: {{ listing.size }}</h5>
+                            </div>
+                            {% if listing.description %}
+                                <div>
+                                    <h5>Описание:</h5>
+                                    <p class="lead">
+                                        {{ listing.description }}
+                                    </p>
+                                </div>
+                            {% endif %}
+                            <div>
+                                <h5 class="project-price">
+                                    Цена: {{ listing.price | intcomma }} руб.
+                                </h5>
+                            </div>
+                            <div class="project-button">
+                                <a href="{% url 'project' listing.id %}" class="btn btn-primary btn-block">
+                                    Подробнее
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="col-md-12">
+                    <p>Нет проектов</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}
