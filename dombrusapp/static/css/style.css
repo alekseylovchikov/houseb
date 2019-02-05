@@ -36,9 +36,18 @@
 }
 
 .thumbs {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    grid-gap: 8px;
     padding: 8px;
     border-top: 4px solid #ffba4d;
     border-bottom: 4px solid #ffba4d;
+}
+
+.thumbs > div > a > img {
+    height: 100px;
+    object-fit: cover;
+    width: 100%;
 }
 
 .project-image {
