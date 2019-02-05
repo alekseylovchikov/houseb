@@ -2,6 +2,7 @@ from django.db import models
 from datetime import datetime
 from django.utils.translation import ugettext as _
 from .choises import TYPES
+from tinymce.models import HTMLField
 
 
 class Project(models.Model):
@@ -12,7 +13,8 @@ class Project(models.Model):
     # )
     # title = models.CharField(max_length=200)
     title = models.CharField(_('Название'), max_length=200)
-    description = models.TextField(_('Описание'), blank=True)
+    #description = models.TextField(_('Описание'), blank=True)
+    description = HTMLField()
     size = models.CharField(_('Размер'), max_length=200)
     price = models.IntegerField(_('Цена'))
     type = models.CharField(_('Тип'), max_length=2, choices=TYPES)

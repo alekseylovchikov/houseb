@@ -61,39 +61,12 @@
 }
 
 .page-title {
-    color: black;
-    font-size: 56px;
+    color: #383838;
+    font-size: 46px;
     font-weight: 400;
     line-height: 56px;
-    display: inline-block;
-    position: relative;
-    padding: 0 95px;
-    margin-bottom: 35px;
     text-align: center;
-}
-
-.page-title:before {
-    content: "";
-    display: block;
-    width: 70px;
-    height: 8px;
-    background-color: #ffba4d;
-    position: absolute;
-    top: 50%;
-    /*margin-top: -4px;*/
-    left: 0;
-}
-
-.page-title:after {
-    content: "";
-    display: block;
-    width: 70px;
-    height: 8px;
-    background-color: #ffba4d;
-    position: absolute;
-    top: 50%;
-    /*margin-top: -4px;*/
-    right: 0;
+    margin-bottom: 32px;
 }
 
 .project-content {
