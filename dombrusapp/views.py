@@ -47,7 +47,7 @@ def bani(request):
 
 def karkas(request):
     listings = Project.objects.order_by('-project_date').filter(is_published=True).filter(type='Ka')
-    paginator = Paginator(listings, 3)
+    paginator = Paginator(listings, 9)
     page = request.GET.get('page')
     paged_listings = paginator.get_page(page)
     context = {
