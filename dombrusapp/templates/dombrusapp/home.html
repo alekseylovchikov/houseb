@@ -71,7 +71,9 @@
                         </div>
                         {% if listing.photo_1 %}
                             <div>
-                                <img class="project-image" src="{{ listing.photo_1.url }}" alt="{{ listing.title }}">
+                                <a href="{% url 'project' listing.id %}">
+                                    <img class="project-image" src="{{ listing.photo_1.url }}" alt="{{ listing.title }}">
+                                </a>
                             </div>
                         {% endif %}
                         <div class="project-content">

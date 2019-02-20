@@ -3,9 +3,16 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from dombrusapp import views
+from django.contrib.sitemaps.views import sitemap
+from dombrusapp.sitemaps import ProjectSitemap
+
+sitemaps = {
+    'projects': ProjectSitemap,
+}
 
 urlpatterns = [
     path(r'^tinymce/', include('tinymce.urls')),
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}),
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
     path('brusovye', views.brus, name='brus'),

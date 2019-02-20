@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Caveat');
+
 .jumbotron {
     border-radius: 0;
     background-image: url("/static/img/big-main-image.jpg");
@@ -6,6 +8,14 @@
     background-position: center;
     background-repeat: no-repeat;
     position: relative;
+    font-family: 'Lobster', cursive;
+}
+
+.project-price {
+    background-color: #2ecc71;
+    color: #fff;
+    padding: 16px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 
 .bg-light {
@@ -21,6 +31,7 @@
     text-shadow: 0 2px 8px rgba(0,0,0,0.6);
     font-size: 48px;
     text-align: center;
+    font-family: 'Lobster', cursive;
 }
 
 .grid {

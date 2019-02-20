@@ -1,20 +1,13 @@
 from django.db import models
 from datetime import datetime
+from django.urls import reverse
 from django.utils.translation import ugettext as _
 from .choises import TYPES
-from tinymce.models import HTMLField
 
 
 class Project(models.Model):
-    # TYPES = (
-    #     ('Br', 'Брусовые'),
-    #     ('Ka', 'Каркасные'),
-    #     ('Ba', 'Бани'),
-    # )
-    # title = models.CharField(max_length=200)
     title = models.CharField(_('Название'), max_length=200)
-    #description = models.TextField(_('Описание'), blank=True)
-    description = HTMLField()
+    description = models.TextField(_('Описание'), blank=True)
     size = models.CharField(_('Размер'), max_length=200)
     price = models.IntegerField(_('Цена'))
     type = models.CharField(_('Тип'), max_length=2, choices=TYPES)
@@ -31,6 +24,9 @@ class Project(models.Model):
     def __str__(self):
         return self.title
 
+    def get_absolute_url(self):
+        return reverse('project', args=[str(self.id)])
+
 
 class Contact(models.Model):
     title = models.CharField(_('Название'), max_length=200, default='Пример: телефон')
@@ -38,3 +34,4 @@ class Contact(models.Model):
 
     def __str__(self):
         return self.title
+
